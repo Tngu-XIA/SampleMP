@@ -94,6 +94,18 @@ public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener,MediaP
         }
     }
 
+    /**
+     * 重播
+     */
+    public void replay() {
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.seekTo(0);// 从开始位置开始播放音乐
+        } else {
+            playNet();
+        }
+    }
+
+
     private void playNet() {
         try {
             mediaPlayer.reset();// 把各项参数恢复到初始状态
@@ -116,7 +128,7 @@ public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener,MediaP
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-
+        replay();
         Log.d("mediaPlayer", "onCompletion");
 
 

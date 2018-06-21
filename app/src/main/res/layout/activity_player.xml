@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PlayerActivity">
+    tools:context=".PlayerActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,66 +15,65 @@
         android:gravity="center">
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:gravity="center"
-            >
+
             <FrameLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp">
+                android:layout_width="280dp"
+                android:layout_height="280dp">
 
             <com.example.tngu.samplemp.RoundImageView
                 android:id="@+id/roundImg_view"
-                android:layout_width="200dp"
-                android:layout_height="200dp" />
+                android:layout_width="280dp"
+                android:layout_height="280dp" />
 
 
 
             <ImageView
                 android:id="@+id/img_show"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="280dp"
+                android:layout_height="280dp"
                 android:background="@drawable/home_ic_player"/>
 
             </FrameLayout>
-        </LinearLayout>
+
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="horizontal">
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="#d6d7d7">
 
         <LinearLayout
+
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="80dp">
+            android:layout_height="70dp"
+            android:gravity="center"
+            >
 
             <TextView
                 android:id="@+id/tv_showTitle"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center" />
+                android:textSize="20dp"
+                android:textStyle="bold"
+
+                />
 
             <TextView
                 android:id="@+id/tv_showName"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
-                android:gravity="center" />
+                android:textSize="18dp"/>
 
 
         </LinearLayout>
@@ -82,14 +82,16 @@
             android:layout_marginRight="20dp"
             android:layout_gravity="center"
             android:id="@+id/btn_play_pause"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:scaleType="centerInside"
+            android:background="#00000000"
             android:src="@drawable/widget_ic_stop" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

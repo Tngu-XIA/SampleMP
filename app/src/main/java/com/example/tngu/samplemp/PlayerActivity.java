@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 //http://up.mcyt.net/?down/47737.mp3  音乐地址
 public class PlayerActivity extends AppCompatActivity {
-    private TextView tv_title;
+    private TextView tv_title,tv_showName;
     private ImageView img_show;
     private ImageButton btn_play_pause, btn_share;
     private AppCompatSeekBar seekBar_music;
@@ -41,6 +41,7 @@ public class PlayerActivity extends AppCompatActivity {
         initView();
         musicPlayer = new MusicPlayer(musicURL_Now, seekBar_music);
         tv_title.setText("这是一个demo哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
+        tv_showName.setText("juju");
         btn_play_pause.setOnClickListener(new ClickEvent());
         seekBar_music.setOnSeekBarChangeListener(new SeekBarChangeEvent());
         roundImageView.setOutsideColor(Color.TRANSPARENT);
@@ -68,6 +69,7 @@ public class PlayerActivity extends AppCompatActivity {
         tv_title = findViewById(R.id.tv_showTitle);
         roundImageView = findViewById(R.id.roundImg_view);
         img_show = findViewById(R.id.img_show);
+        tv_showName = findViewById(R.id.tv_showName);
     }
 
     class ClickEvent implements View.OnClickListener {

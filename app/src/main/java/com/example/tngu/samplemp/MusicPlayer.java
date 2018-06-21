@@ -10,54 +10,56 @@ import android.util.Log;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener,MediaPlayer.OnCompletionListener,MediaPlayer.OnPreparedListener{
+public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener {
     public MediaPlayer mediaPlayer;
     private AppCompatSeekBar seekBarProgress;
     private Timer timer = new Timer();
     private String musicURL;
     private boolean isPause;
-   // private boolean isFirst;
+    // private boolean isFirst;
     //private int playPosition;
 
 
-    public MusicPlayer(String musicURL,AppCompatSeekBar seekBarProgress){
+    public MusicPlayer(String musicURL, AppCompatSeekBar seekBarProgress) {
         this.seekBarProgress = seekBarProgress;
         this.musicURL = musicURL;
 
 
-        try{
+        try {
             mediaPlayer = new MediaPlayer();
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mediaPlayer.setOnBufferingUpdateListener(this);
             mediaPlayer.setOnPreparedListener(this);
             mediaPlayer.setOnCompletionListener(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("mediaplayer", "MusicPlayer:error ");
         }
-        timer.schedule(mTimerTask,0,1000);
+        timer.schedule(mTimerTask, 0, 1000);
     }
 
     TimerTask mTimerTask = new TimerTask() {
         @Override
         public void run() {
-            if(mediaPlayer == null){
+            if (mediaPlayer == null) {
                 return;
             }
-            if(mediaPlayer.isPlaying() && seekBarProgress.isPressed() == false){
+            if (mediaPlayer.isPlaying() && seekBarProgress.isPressed() == false) {
                 handlerProgress.sendEmptyMessage(0);
             }
         }
     };
 
-    Handler handlerProgress = new Handler(){
-        public void handleMessage(Message message){
-            int position  = mediaPlayer.getCurrentPosition();
+    Handler handlerProgress = new Handler() {
+        public void handleMessage(Message message) {
+            int position = mediaPlayer.getCurrentPosition();
             int duration = mediaPlayer.getDuration();
-            if(duration > 0){
-                long pos = seekBarProgress.getMax() * position / duration ;
+            if (duration > 0) {
+                long pos = seekBarProgress.getMax() * position / duration;
                 seekBarProgress.setProgress((int) pos);
             }
-        };
+        }
+
+        ;
     };
 
     /*public void player(){
@@ -68,16 +70,16 @@ public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener,MediaP
         play_pause();
     }*/
 
-    public void isFirstPlay(){
+    public void isFirstPlay() {
         playNet();
     }
 
-    public boolean play_pause(){
-        if(mediaPlayer.isPlaying()){
+    public boolean play_pause() {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             isPause = true;
-        }else {
-            if(isPause){
+        } else {
+            if (isPause) {
                 mediaPlayer.start();
                 isPause = false;
             }
@@ -123,7 +125,7 @@ public class MusicPlayer implements MediaPlayer.OnBufferingUpdateListener,MediaP
     public void onBufferingUpdate(MediaPlayer mp, int percent) {
         seekBarProgress.setSecondaryProgress(percent);
         int currentProgress = seekBarProgress.getMax()
-                *mediaPlayer.getCurrentPosition()/ mediaPlayer.getDuration();
+                * mediaPlayer.getCurrentPosition() / mediaPlayer.getDuration();
     }
 
     @Override

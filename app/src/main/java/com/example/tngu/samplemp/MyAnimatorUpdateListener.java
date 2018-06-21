@@ -21,15 +21,16 @@ public class MyAnimatorUpdateListener implements ValueAnimator.AnimatorUpdateLis
     /**
      * 当前动画的播放运行时间
      */
-    private long mCurrentPlayTime = 01 ;
+    private long mCurrentPlayTime = 01;
     /**
      * 是否是暂停状态
      */
     private ObjectAnimator animator;
 
-    public MyAnimatorUpdateListener(ObjectAnimator animator){
+    public MyAnimatorUpdateListener(ObjectAnimator animator) {
         this.animator = animator;
     }
+
     public boolean isPause() {
         return isPause;
     }
@@ -53,15 +54,14 @@ public class MyAnimatorUpdateListener implements ValueAnimator.AnimatorUpdateLis
     }
 
 
-
     @Override
     public void onAnimationUpdate(final ValueAnimator animation) {
         /**
          * 如果是暂停则将状态保持下来，并每个刷新动画的时间了；来设置当前时间，让动画
          * 在时间上处于暂停状态，同时要设置一个静止的时间加速器，来保证动画不会抖动
          */
-        if(isPause){
-            if(!isPaused){
+        if (isPause) {
+            if (!isPaused) {
                 mCurrentPlayTime = animation.getCurrentPlayTime();
                 fraction = animation.getAnimatedFraction();
                 animation.setInterpolator(new TimeInterpolator() {
@@ -74,7 +74,7 @@ public class MyAnimatorUpdateListener implements ValueAnimator.AnimatorUpdateLis
             }
             // 每隔动画播放的时间，我们都会将播放时间往回调整，以便重新播放的时候接着使用这个时间,同时也为了让整个动画不结束
             new CountDownTimer(ValueAnimator.getFrameDelay(),
-                    ValueAnimator.getFrameDelay()){
+                    ValueAnimator.getFrameDelay()) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -86,7 +86,7 @@ public class MyAnimatorUpdateListener implements ValueAnimator.AnimatorUpdateLis
                     animation.setCurrentPlayTime(mCurrentPlayTime);
                 }
             }.start();
-        }else {
+        } else {
             // 将时间拦截器恢复成线性的，如果您有自己的，也可以在这里进行恢复
             animation.setInterpolator(null);
         }

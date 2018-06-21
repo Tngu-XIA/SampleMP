@@ -163,10 +163,12 @@ public class RoundImageView extends android.support.v7.widget.AppCompatImageView
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(200);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawCircle(scaleBitmap.getWidth() / 2,
                 scaleBitmap.getHeight() / 2,
-                scaleBitmap.getWidth() / 2,
+                scaleBitmap.getWidth() / 2-110,
                 paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(scaleBitmap, rect, rect, paint);
